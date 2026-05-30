@@ -74,15 +74,6 @@ module.exports.showListings = async (req, res) => {
                     temperature: 0.8
                 }
             });
-
-            // >>> DEBUGGING LINES <<<
-            // console.log("--- GEMINI RESPONSE DEBUG ---");
-            // console.log("Response Object:", JSON.stringify(response, null, 2));
-            // console.log("Finish Reason:", response.candidates?.[0]?.finishReason);
-            // console.log("-----------------------------");
-            // >>> END DEBUGGING <<<
-
-            // FIX: Safely extract text. Use (response.text || "") to ensure it's a string.
             summary = (response.text || "").trim();
             
             if (!summary) {
