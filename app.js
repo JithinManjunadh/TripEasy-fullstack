@@ -122,8 +122,8 @@ app.use((err,req,res,next)=>{
     let {statusCode=500,message="Something went wrong!"}=err;
     res.status(statusCode).render("listings/error.ejs",{message});
 });
-// module.exports = app;
-app.listen(3000,()=>{
-    console.log("Sever is listening to port 3000");
-});
+module.exports = app;
+// app.listen(3000,()=>{
+//     console.log("Sever is listening to port 3000");
+// });
 
