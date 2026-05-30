@@ -24,8 +24,8 @@ const userRouter=require("./routes/user.js");
 const bookingRoutes = require("./routes/bookings");
 const dashboardRoutes = require("./routes/dashboard.js");
 
-// const dbUrl = process.env.ATLASDB_URL;
-const dbUrl = "mongodb://127.0.0.1:27017/wanderlust";
+const dbUrl = process.env.ATLASDB_URL;
+// const dbUrl = "mongodb://127.0.0.1:27017/wanderlust";
 
 main().then(()=>{
     console.log("Connected to DB");
@@ -62,7 +62,7 @@ const sessionOptions = {
     store,
     secret:  process.env.SECRET,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie:{
         expires: Date.now() + 7*24*60*60*1000,
         maxAge: 7*24*60*60*1000,
@@ -122,7 +122,8 @@ app.use((err,req,res,next)=>{
     let {statusCode=500,message="Something went wrong!"}=err;
     res.status(statusCode).render("listings/error.ejs",{message});
 });
+module.exports = app;
+// app.listen(3000,()=>{
+//     console.log("Sever is listening to port 3000");
+// });
 
-app.listen(3000,()=>{
-    console.log("Sever is listening to port 3000");
-});
