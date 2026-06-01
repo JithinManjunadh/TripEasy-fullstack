@@ -8,6 +8,11 @@ module.exports.renderNewForm = async (req, res) => {
         req.flash("error", "Listing not found!");
         return res.redirect("/listings");
     }
+    // Prevent owner from booking own listing
+    if (listing.owner.equals(req.user._id)) {
+        req.flash("error", "You cannot book your own listing!");
+        return res.redirect(`/listings/${listingId}`);
+    }
     res.render("bookings/new.ejs", { listing });
 };
 
@@ -19,7 +24,11 @@ module.exports.createBooking = async (req, res) => {
         req.flash("error", "Listing not found!");
         return res.redirect("/listings");
     }
-
+    // Prevent owner from booking own listing
+    if (listing.owner.equals(req.user._id)) {
+        req.flash("error", "You cannot book your own listing!");
+        return res.redirect(`/listings/${listingId}`);
+    }
     const start = new Date(startDate);
     const end = new Date(endDate);
     const nights = Math.ceil((end - start) / (1000 * 60 * 60 * 24));

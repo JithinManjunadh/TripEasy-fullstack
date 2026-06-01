@@ -1,6 +1,3 @@
-// This is a placeholder for a User's ObjectId.
-// WHEN SEEDING YOUR DATABASE, YOU MUST REPLACE 'OWNER_ID_PLACEHOLDER'
-// with the actual ObjectId of a valid user from your 'users' collection.
 const OWNER_ID_PLACEHOLDER = "657199c43d9472f10b001a1d"; // Example ID, replace with real user ID!
 
 const sampleListings = [
