@@ -59,7 +59,7 @@ store.on("error", (err)=>{
 });
 
 const sessionOptions = {
-    store,
+    store: store,
     secret:  process.env.SECRET,
     resave: false,
     saveUninitialized: false,
